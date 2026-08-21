@@ -11,6 +11,7 @@ namespace SimpleCarPhysics.Input
         private void Update()
         {
             var value = 0f;
+
             if (_sources == null)
             {
                 Throttle = 0f;

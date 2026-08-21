@@ -15,7 +15,7 @@ namespace SimpleCarPhysics.UI
         {
             if (_gameController == null)
             {
-                _gameController = FindFirstObjectByType<GameController>();
+                _gameController = FindAnyObjectByType<GameController>();
             }
 
             Assert.IsNotNull(_resultScreen, nameof(_resultScreen));

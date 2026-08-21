@@ -9,12 +9,7 @@ namespace SimpleCarPhysics.Gameplay
         private void Update()
         {
             var keyboard = Keyboard.current;
-            if (keyboard == null)
-            {
-                return;
-            }
-
-            if (keyboard.rKey.wasPressedThisFrame || keyboard.spaceKey.wasPressedThisFrame)
+            if (keyboard != null && (keyboard.rKey.wasPressedThisFrame || keyboard.spaceKey.wasPressedThisFrame))
             {
                 Restart();
             }
@@ -23,8 +18,7 @@ namespace SimpleCarPhysics.Gameplay
         public void Restart()
         {
             Time.timeScale = 1f;
-            var active = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(active.buildIndex);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

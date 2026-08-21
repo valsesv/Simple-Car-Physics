@@ -12,7 +12,7 @@ namespace SimpleCarPhysics.Gameplay
         {
             if (_gameController == null)
             {
-                _gameController = FindFirstObjectByType<GameController>();
+                _gameController = FindAnyObjectByType<GameController>();
             }
 
             Assert.IsNotNull(_gameController, nameof(_gameController));
@@ -21,22 +21,11 @@ namespace SimpleCarPhysics.Gameplay
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!IsPlayer(other))
+            if (string.IsNullOrEmpty(_vehicleTag) || other.CompareTag(_vehicleTag))
             {
-                return;
+                _gameController.Win();
             }
-
-            _gameController.Win();
         }
 
-        private bool IsPlayer(Collider other)
-        {
-            if (other.CompareTag(_vehicleTag))
-            {
-                return true;
-            }
-
-            return other.attachedRigidbody != null && other.attachedRigidbody.CompareTag(_vehicleTag);
-        }
     }
 }

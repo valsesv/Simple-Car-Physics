@@ -8,11 +8,8 @@ namespace SimpleCarPhysics.Car
     [RequireComponent(typeof(Rigidbody))]
     public class CarController : MonoBehaviour
     {
-        [Header("References")]
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private MonoBehaviour _inputSource;
-
-        private WheelCollider[] _wheels;
 
         [Header("Input")]
         [SerializeField] private bool _invertDrive;
@@ -23,10 +20,11 @@ namespace SimpleCarPhysics.Car
         [SerializeField] private float _pitchTorque = 12f;
         [SerializeField] private Vector3 _centerOfMass = new Vector3(0f, -0.15f, 0f);
 
-        [Header("Wheelie (only front or only rear on ground)")]
+        [Header("One axis modifier")]
         [SerializeField] private float _wheelieDriveScale = 0.35f;
         [SerializeField] private float _wheeliePitchScale = 2.5f;
 
+        private WheelCollider[] _wheels;
         private ICarInput _input;
         private GameController _game;
         private float _throttle;
@@ -40,7 +38,7 @@ namespace SimpleCarPhysics.Car
             Assert.IsNotNull(_input, nameof(_input));
             _wheels = GetComponentsInChildren<WheelCollider>(true);
             Assert.IsTrue(_wheels.Length > 0, nameof(_wheels));
-            _game = FindFirstObjectByType<GameController>();
+            _game = FindAnyObjectByType<GameController>();
             Assert.IsNotNull(_game, nameof(_game));
             _rigidbody.centerOfMass = _centerOfMass;
         }
@@ -64,12 +62,7 @@ namespace SimpleCarPhysics.Car
             }
 
             var value = Mathf.Clamp(_input.Throttle, -1f, 1f);
-            if (_invertDrive)
-            {
-                value = -value;
-            }
-
-            _throttle = value;
+            _throttle = _invertDrive ? -value : value;
         }
 
         private void FixedUpdate()
@@ -80,25 +73,13 @@ namespace SimpleCarPhysics.Car
             }
 
             GetAxleContact(out var front, out var rear);
-
-            var driveScale = 1f;
-            var pitchScale = 1f;
-
-            if (front != rear)
-            {
-                driveScale = _wheelieDriveScale;
-                pitchScale = _wheeliePitchScale;
-            }
-
+            var wheelie = front != rear;
+            var driveScale = wheelie ? _wheelieDriveScale : 1f;
+            var pitchScale = wheelie ? _wheeliePitchScale : 1f;
             var pitch = _invertPitch ? _throttle : -_throttle;
 
-            _rigidbody.AddForce(
-                transform.forward * (_throttle * _driveForce * driveScale),
-                ForceMode.Force);
-
-            _rigidbody.AddTorque(
-                transform.right * (pitch * _pitchTorque * pitchScale),
-                ForceMode.Acceleration);
+            _rigidbody.AddForce(transform.forward * (_throttle * _driveForce * driveScale));
+            _rigidbody.AddTorque(transform.right * (pitch * _pitchTorque * pitchScale), ForceMode.Acceleration);
         }
 
         private void GetAxleContact(out bool front, out bool rear)

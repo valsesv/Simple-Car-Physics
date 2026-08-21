@@ -1,13 +1,21 @@
+using System;
 using SimpleCarPhysics.Car;
 using UnityEngine;
 
 namespace SimpleCarPhysics.Gameplay
 {
+    public enum GameState
+    {
+        Playing,
+        Won,
+        Lost
+    }
+
     public class GameController : MonoBehaviour
     {
         public GameState State { get; private set; } = GameState.Playing;
 
-        public event System.Action<GameState> StateChanged;
+        public event Action<GameState> StateChanged;
 
         private void Awake()
         {
@@ -24,24 +32,18 @@ namespace SimpleCarPhysics.Gameplay
 
         public void Win()
         {
-            if (State != GameState.Playing)
+            if (State == GameState.Playing)
             {
-                return;
+                SetState(GameState.Won);
             }
-
-            SetState(GameState.Won);
-            Debug.Log("Level complete");
         }
 
         public void Lose()
         {
-            if (State != GameState.Playing)
+            if (State == GameState.Playing)
             {
-                return;
+                SetState(GameState.Lost);
             }
-
-            SetState(GameState.Lost);
-            Debug.Log("Failed — press R / Space to restart");
         }
 
         private void SetState(GameState state)
@@ -54,12 +56,5 @@ namespace SimpleCarPhysics.Gameplay
                 Time.timeScale = 0f;
             }
         }
-    }
-
-    public enum GameState
-    {
-        Playing,
-        Won,
-        Lost
     }
 }

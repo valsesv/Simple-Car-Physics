@@ -18,17 +18,7 @@ namespace SimpleCarPhysics.Input
 
             var forward = keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed;
             var reverse = keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed;
-
-            Throttle = 0f;
-            if (forward)
-            {
-                Throttle += 1f;
-            }
-
-            if (reverse)
-            {
-                Throttle -= 1f;
-            }
+            Throttle = forward == reverse ? 0f : (forward ? 1f : -1f);
         }
     }
 }

@@ -10,12 +10,9 @@ namespace SimpleCarPhysics.UI
 {
     public class TouchControlsView : MonoBehaviour
     {
-        [Header("Buttons")]
         [SerializeField] private Button _gasButton;
         [SerializeField] private Button _reverseButton;
         [SerializeField] private Button _restartButton;
-
-        [Header("Systems")]
         [SerializeField] private UICarInput _uiInput;
         [SerializeField] private LevelRestarter _levelRestarter;
 
@@ -36,12 +33,12 @@ namespace SimpleCarPhysics.UI
 
         private void OnEnable()
         {
-            _restartButton.onClick.AddListener(OnRestartPressed);
+            _restartButton.onClick.AddListener(_levelRestarter.Restart);
         }
 
         private void OnDisable()
         {
-            _restartButton.onClick.RemoveListener(OnRestartPressed);
+            _restartButton.onClick.RemoveListener(_levelRestarter.Restart);
             _gasHeld = false;
             _reverseHeld = false;
             _uiInput.Clear();
@@ -53,15 +50,10 @@ namespace SimpleCarPhysics.UI
             _uiInput.SetReversePressed(_reverseHeld);
         }
 
-        private void OnRestartPressed() => _levelRestarter.Restart();
-
         private static void BindHold(Button button, Action<bool> setHeld)
         {
-            var trigger = button.gameObject.GetComponent<EventTrigger>();
-            if (trigger == null)
-            {
-                trigger = button.gameObject.AddComponent<EventTrigger>();
-            }
+            var trigger = button.gameObject.GetComponent<EventTrigger>()
+                ?? button.gameObject.AddComponent<EventTrigger>();
 
             Add(trigger, EventTriggerType.PointerDown, _ => setHeld(true));
             Add(trigger, EventTriggerType.PointerUp, _ => setHeld(false));

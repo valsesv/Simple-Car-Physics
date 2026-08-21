@@ -7,18 +7,7 @@ namespace SimpleCarPhysics.Input
         private bool _forward;
         private bool _reverse;
 
-        public float Throttle
-        {
-            get
-            {
-                if (_forward == _reverse)
-                {
-                    return 0f;
-                }
-
-                return _forward ? 1f : -1f;
-            }
-        }
+        public float Throttle => _forward == _reverse ? 0f : (_forward ? 1f : -1f);
 
         public void SetForwardPressed(bool pressed) => _forward = pressed;
 

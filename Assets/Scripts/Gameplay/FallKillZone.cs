@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace SimpleCarPhysics.Gameplay
 {
@@ -11,28 +12,18 @@ namespace SimpleCarPhysics.Gameplay
         {
             if (_gameController == null)
             {
-                _gameController = FindFirstObjectByType<GameController>();
+                _gameController = FindAnyObjectByType<GameController>();
             }
+
+            Assert.IsNotNull(_gameController, nameof(_gameController));
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_gameController == null)
+            if (string.IsNullOrEmpty(_vehicleTag) || other.CompareTag(_vehicleTag))
             {
-                _gameController = FindFirstObjectByType<GameController>();
+                _gameController.Lose();
             }
-
-            if (_gameController == null)
-            {
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(_vehicleTag) && !other.CompareTag(_vehicleTag))
-            {
-                return;
-            }
-
-            _gameController.Lose();
         }
     }
 }

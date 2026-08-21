@@ -84,7 +84,7 @@ MonoBehaviour:
   _invertDrive: 1
   _invertPitch: 0
   _driveForce: 5000
-  _pitchTorque: 8
+  _pitchTorque: 10.5
   _centerOfMass: {x: 0, y: -0.15, z: 0}
   _wheelieDriveScale: 0.35
   _wheeliePitchScale: 1.5

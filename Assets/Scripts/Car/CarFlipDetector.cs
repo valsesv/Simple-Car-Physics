@@ -19,7 +19,7 @@ namespace SimpleCarPhysics.Car
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_fired || other.CompareTag(_gateTag))
+            if (_fired || other.isTrigger || other.CompareTag(_gateTag))
             {
                 return;
             }

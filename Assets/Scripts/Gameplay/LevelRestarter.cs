@@ -22,6 +22,7 @@ namespace SimpleCarPhysics.Gameplay
 
         public void Restart()
         {
+            Time.timeScale = 1f;
             var active = SceneManager.GetActiveScene();
             SceneManager.LoadScene(active.buildIndex);
         }

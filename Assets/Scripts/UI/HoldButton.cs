@@ -1,18 +1,18 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace SimpleCarPhysics.UI
 {
     public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
     {
-        public UnityEvent OnPressed;
-        public UnityEvent OnReleased;
+        public bool IsPressed { get; private set; }
 
-        public void OnPointerDown(PointerEventData eventData) => OnPressed?.Invoke();
+        public void OnPointerDown(PointerEventData eventData) => IsPressed = true;
 
-        public void OnPointerUp(PointerEventData eventData) => OnReleased?.Invoke();
+        public void OnPointerUp(PointerEventData eventData) => IsPressed = false;
 
-        public void OnPointerExit(PointerEventData eventData) => OnReleased?.Invoke();
+        public void OnPointerExit(PointerEventData eventData) => IsPressed = false;
+
+        private void OnDisable() => IsPressed = false;
     }
 }

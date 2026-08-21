@@ -121,13 +121,35 @@ NavMeshSettings:
   m_NavMeshData: {fileID: 0}
 --- !u!114 &399361184 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1100000023, guid: 69d18409a22d450093ead8a05880f5e5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1100000025, guid: 69d18409a22d450093ead8a05880f5e5, type: 3}
   m_PrefabInstance: {fileID: 2000000001}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c85d6187d8f419fa3e44050558d5d8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 836c50f215f3409cb193cb4126d10243, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &399361185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1100000024, guid: 69d18409a22d450093ead8a05880f5e5, type: 3}
+  m_PrefabInstance: {fileID: 2000000001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a75ae687f14448ad2b5da8b9c672a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &399361186 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1100000014, guid: 69d18409a22d450093ead8a05880f5e5, type: 3}
+  m_PrefabInstance: {fileID: 2000000001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66056ce64b14214b6c64f73c824f08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2000000001
@@ -301,6 +323,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 330585543, guid: 75ffea00c7f84f9f82b109dc7c73e7ba, type: 3}
+      propertyPath: m_Name
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 330585546, guid: 75ffea00c7f84f9f82b109dc7c73e7ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -447,6 +473,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1500000006, guid: 48adef31013d4800b5a8e3dabcddc530, type: 3}
+      propertyPath: _uiInput
+      value: 
+      objectReference: {fileID: 399361185}
+    - target: {fileID: 1500000006, guid: 48adef31013d4800b5a8e3dabcddc530, type: 3}
+      propertyPath: _levelRestarter
+      value: 
+      objectReference: {fileID: 399361186}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

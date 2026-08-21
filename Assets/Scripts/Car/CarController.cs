@@ -11,7 +11,8 @@ namespace SimpleCarPhysics.Car
         [Header("References")]
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private MonoBehaviour _inputSource;
-        [SerializeField] private WheelCollider[] _wheels;
+
+        private WheelCollider[] _wheels;
 
         [Header("Input")]
         [SerializeField] private bool _invertDrive;

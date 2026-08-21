@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
@@ -118,6 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c66036aba1b43e4b39dab2355c94396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gasButton: {fileID: 1500000024}
+  _reverseButton: {fileID: 1500000034}
+  _restartButton: {fileID: 1500000044}
   _uiInput: {fileID: 0}
   _levelRestarter: {fileID: 0}
 --- !u!1 &1500000021
@@ -200,36 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d9534c591b49f1a390ed274e0e4888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1500000006}
-        m_TargetAssemblyTypeName: SimpleCarPhysics.UI.TouchControlsView, Assembly-CSharp
-        m_MethodName: OnForwardDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1500000006}
-        m_TargetAssemblyTypeName: SimpleCarPhysics.UI.TouchControlsView, Assembly-CSharp
-        m_MethodName: OnForwardUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!222 &1102034764543748883
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -264,13 +237,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500000031}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1500000002}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 160, y: 160}
@@ -318,36 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d9534c591b49f1a390ed274e0e4888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1500000006}
-        m_TargetAssemblyTypeName: SimpleCarPhysics.UI.TouchControlsView, Assembly-CSharp
-        m_MethodName: OnReverseDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnReleased:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1500000006}
-        m_TargetAssemblyTypeName: SimpleCarPhysics.UI.TouchControlsView, Assembly-CSharp
-        m_MethodName: OnReverseUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!222 &210749767152994290
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -467,19 +410,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1500000043}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1500000006}
-        m_TargetAssemblyTypeName: SimpleCarPhysics.UI.TouchControlsView, Assembly-CSharp
-        m_MethodName: OnRestartPressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &3006843776630525092
 CanvasRenderer:
   m_ObjectHideFlags: 0

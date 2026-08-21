@@ -1,33 +1,25 @@
 using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace SimpleCarPhysics.Car
 {
     public class CarFlipDetector : MonoBehaviour
     {
-        [SerializeField] private float _flipDotThreshold = -0.05f;
-        [SerializeField] private float _flipHoldSeconds = 0.45f;
+        [SerializeField] private string _gateTag = "Gate";
 
         public event Action Flipped;
 
-        private float _timer;
         private bool _fired;
 
-        private void Update()
+        private void Awake()
         {
-            if (_fired)
-            {
-                return;
-            }
+            Assert.IsFalse(string.IsNullOrEmpty(_gateTag), nameof(_gateTag));
+        }
 
-            if (Vector3.Dot(transform.up, Vector3.up) >= _flipDotThreshold)
-            {
-                _timer = 0f;
-                return;
-            }
-
-            _timer += Time.deltaTime;
-            if (_timer < _flipHoldSeconds)
+        private void OnTriggerEnter(Collider other)
+        {
+            if (_fired || other.CompareTag(_gateTag))
             {
                 return;
             }

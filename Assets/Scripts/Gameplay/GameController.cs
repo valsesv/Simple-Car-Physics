@@ -9,12 +9,16 @@ namespace SimpleCarPhysics.Gameplay
 
         public event System.Action<GameState> StateChanged;
 
+        private void Awake()
+        {
+            Time.timeScale = 1f;
+        }
+
         private void Start()
         {
-            var flipDetector = FindFirstObjectByType<CarFlipDetector>();
-            if (flipDetector != null)
+            foreach (var detector in FindObjectsByType<CarFlipDetector>())
             {
-                flipDetector.Flipped += Lose;
+                detector.Flipped += Lose;
             }
         }
 
@@ -44,6 +48,11 @@ namespace SimpleCarPhysics.Gameplay
         {
             State = state;
             StateChanged?.Invoke(state);
+
+            if (state != GameState.Playing)
+            {
+                Time.timeScale = 0f;
+            }
         }
     }
 
